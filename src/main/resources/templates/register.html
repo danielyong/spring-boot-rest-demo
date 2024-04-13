@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Register</title>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    <div>
+      <div><h1>Register</h1></div>
+      <div style="color:red;" id="error"><div>
+      <form th:formaction="@{/api/register}" onsubmit="return submitForm(event);">
+        <div>Username</div>
+        <div><input name="username" type="text" /></div>
+        <div>Password</div>
+        <div><input name="password" type="password" /></div>
+        <div>
+            <select name="role">
+              <option value="ADMIN">Admin</option>
+              <option value="USER">User</option>
+            </select>
+          </div>
+         <div><button type="submit">Submit</button></div>
+      </form>
+    </div>
+</body>
+</html>

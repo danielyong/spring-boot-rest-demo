@@ -1,0 +1,24 @@
+services:
+  db:
+    container_name: db
+    image: postgres
+    environment:
+      POSTGRES_USER: daniel
+      POSTGRES_PASSWORD: Strongandcompl3x
+      POSTGRES_DB: example
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data:/var/lib/postgresql/data/pgdata
+  application:
+    container_name: application
+    depends_on:
+      - db
+    build:
+      context: ./
+      dockerfile: ./localbuild.dockerfile
+    environment:
+      DATASOURCE_URL: jdbc:postgresql://db/example
+      DATABASE_USER: daniel
+      DATABASE_PASSWORD: Strongandcompl3x
+    ports:
+      - 8081:8081

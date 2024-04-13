@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <style>
+      .six-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      }
+    </style>
+    <script type="text/javascript">
+      async function submitForm(event){
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const entries = Object.fromEntries(formData.entries());
+        const response = await fetch("/api/user/" + entries.id, {
+          method: event.submitter.getAttribute("formmethod"),
+          body: new URLSearchParams(formData)
+        });
+        if (response.status === 200) {
+          const responseData = await response.json();
+          if(responseData.result === "success" && event.submitter.getAttribute("formmethod") === "DELETE"){
+            document.querySelector("#" + entries.id).remove();
+          }else{
+            alert("Password updated!");
+          }
+        }
+      }
+    </script>
+</head>
+<body>
+    <div th:each="user: ${userList}" th:id="${user.id}">
+      <form class="six-column" onsubmit="return submitForm(event);">
+        <div>Username</div>
+        <div th:text="${user.username}"></div>
+        <div>Password</div>
+        <div><input name="password" type="password" /></div>
+        <div><button type="submit" formmethod="PUT">Update</button></div>
+        <div><button type="submit" formmethod="DELETE">Delete</button></div>
+        <input type="hidden" name="id" th:value="${user.id}" />
+      </form>
+    </div>
+</body>
+</html>

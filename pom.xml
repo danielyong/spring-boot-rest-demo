@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.3</version>
+    <relativePath />
+  </parent>
+  <groupId>com.example.demo</groupId>
+  <artifactId>restapi</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+  <name>REST API example</name>
+  <description>
+    Example Spring Boot REST api implementation that CRUDs into a Postgresql backend.
+	</description>
+  <properties>
+    <java.version>21</java.version>
+  </properties>
+  <profiles>
+    <profile>
+      <id>development</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <packaging.type>jar</packaging.type>
+      </properties>
+      <dependencies>
+      </dependencies>
+    </profile>
+  </profiles>
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.7.3</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt -->
+    <dependency>
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+      <version>9.37.3</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-cache</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.vaadin.external.google</groupId>
+          <artifactId>android-json</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!--
+    https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <!--
+    https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+    <!--
+    https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>spring-boot-rest-api</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>
