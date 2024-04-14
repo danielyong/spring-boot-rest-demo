@@ -18,4 +18,4 @@ UI is practically non existent as I am not really a front end developer, I build
 Run docker compose build, or setup to a PostgreSQL instance manually
 
 ### License
-This project is licensed under [GLWTPL](./LICENSE)
+This project is licensed under [GLWTPL](https://github.com/me-shaon/GLWTPL/blob/master/LICENSE)
