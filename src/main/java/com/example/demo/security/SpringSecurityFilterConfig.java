@@ -25,7 +25,6 @@ public class SpringSecurityFilterConfig extends GenericFilterBean {
       Authentication authentication = authenticationService.getAuthentication((HttpServletRequest) request);
       SecurityContextHolder.getContext().setAuthentication(authentication);
     } catch (Exception exp) {
-      exp.printStackTrace();
     }
     filterChain.doFilter(request, response);
   }

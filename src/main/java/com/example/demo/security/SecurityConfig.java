@@ -22,7 +22,7 @@ public class SecurityConfig {
         .addFilterBefore(springSecurityFilterConfig, UsernamePasswordAuthenticationFilter.class)
         .authorizeHttpRequests(
             auth -> auth
-              .requestMatchers("/.well-known/**", "/web/login", "/web/register").permitAll()
+              .requestMatchers("/.well-known/**", "/web/login", "/web/register", "/web/weather", "/api/weather").permitAll()
               .requestMatchers("/web/index", "/api/**").authenticated()
               //Can do roles and authorities tbh
               .anyRequest().permitAll());

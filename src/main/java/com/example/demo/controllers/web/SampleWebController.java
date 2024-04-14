@@ -21,6 +21,10 @@ public class SampleWebController {
   @Autowired
   private SampleSpringBean sampleSpringBean;
 
+  @GetMapping("/weather")
+  public String weather(){
+    return "weather";
+  }
   @GetMapping("/index")
   public String index(Model model) {
     model.addAttribute("userList", sampleSpringBean.getAllUser());
@@ -40,7 +44,7 @@ public class SampleWebController {
       response.addCookie(authenticationCookie);
       response.sendRedirect("/web/index");
     }else{
-      response.sendRedirect("/web/login?error");
+      response.sendRedirect("/web/login");
     }
   }
 
@@ -55,7 +59,7 @@ public class SampleWebController {
       response.addCookie(authenticationCookie);
       response.sendRedirect("/web/index");
     }else{
-      response.sendRedirect("/web/login?error");
+      response.sendRedirect("/web/login");
     }
   }
 }

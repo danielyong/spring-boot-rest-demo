@@ -2,11 +2,13 @@ package com.example.demo.beans.functions;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import com.example.demo.beans.repository.DemoUserRepository;
 import com.example.demo.model.entities.DemoUser;
 import com.example.demo.model.entities.SecurityKeys;
+import com.example.demo.model.general.WeatherData;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -127,6 +130,16 @@ public class SampleSpringBean {
       } catch (JOSEException e) {
         e.printStackTrace();
       }
+    }
+    return null;
+  }
+
+  public List<WeatherData> getLatestWeatherData() {
+    try {
+      String query = "SELECT * FROM weather_data ORDER BY created_at DESC LIMIT 10";
+      return jdbcTemplate.query(query, new BeanPropertyRowMapper<WeatherData>(WeatherData.class));
+    } catch (Exception e) {
+      e.printStackTrace();
     }
     return null;
   }

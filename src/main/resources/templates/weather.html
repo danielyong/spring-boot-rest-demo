@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Weather</title>
+    <style>
+      .weather-data-record{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      }
+    </style>
+    <script type="text/javascript">
+      async function loadWeatherData(event){
+        event.preventDefault();
+        const response = await fetch("/api/weather", {
+          method: "GET"
+        });
+        if (response.status === 200) {
+          const responseData = await response.json();
+          const weatherReportDiv = document.querySelector("#weather-report");
+
+          for(let i = 0; i < responseData.length; i++){
+            if(document.querySelector(`#data-${responseData[i].data_id}`) == null){
+              const content = `
+                <div class="weather-data-record" id="data-${responseData[i].data_id}">
+                  <div>Time</div><div>${responseData[i].created_at}</div>
+                  <div>Temperature</div><div>${responseData[i].temperature}</div>
+                  <div>Summary</div><div>${responseData[i].summary}</div>
+                </div>`;
+              weatherReportDiv.insertAdjacentHTML("afterBegin", content);
+            }
+          }
+        }
+      }
+
+      window.onload = function(){
+        document.querySelector("#btn-reload").click();
+      }
+    </script>
+</head>
+<body>
+    <div>
+      <button type="button" id="btn-reload" onclick="return loadWeatherData(event);">Load data</button>
+      Data generated from kafka consumer
+      Data automatically produced by producer every 3 seconds
+    </div>
+    <div id="weather-report">
+    </div>
+</body>
+</html>
